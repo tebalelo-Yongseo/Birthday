@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday RIRI ♑</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3, #fad0c4, #a18cd1);
+  background-size: 400% 400%;
+  animation: bg 12s ease infinite;
+}
+
+@keyframes bg {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Name animation */
+.name {
+  font-size: 2.4em;
+  font-weight: bold;
+  animation: glow 2s infinite alternate, bounce 2s infinite;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #fff; }
+  to { text-shadow: 0 0 25px #ffd36e, 0 0 40px #ff7eb3; }
+}
+
+@keyframes bounce {
+  50% { transform: translateY(-5px); }
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid rgba(255,255,255,0.8);
+  object-fit: cover;
+  margin: 15px 0;
+}
+
+.message {
+  font-size: 1em;
+  line-height: 1.6;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 3s ease;
+}
+
+button {
+  margin-top: 15px;
+  padding: 14px 28px;
+  font-size: 1.05em;
+  border: none;
+  border-radius: 40px;
+  background: #ffd36e;
+  color: #333;
+  cursor: pointer;
+}
+
+.share {
+  background: #25D366;
+  color: white;
+}
+
+/* Balloons */
+.balloon {
+  position: absolute;
+  bottom: -80px;
+  font-size: 32px;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  to { transform: translateY(-120vh); }
+}
+
+/* Fireworks sparks */
+.spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  animation: spark 1s ease-out forwards;
+}
+
+@keyframes spark {
+  to {
+    transform: translate(var(--x), var(--y));
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+  <div class="name">🎉RIRI ♑ 🎉</div>
+  <div>Capricorn Queen • BIBI 💖</div>
+
+  <img src="WhatsApp1 Image 2026-01-10 at 05.10.39.jpeg" class="avatar">
+
+  <div class="message" id="msg">
+   Rebaona, born under the powerful sign of Capricorn,
+    you are strength wrapped in elegance and ambition guided by wisdom.
+
+    Like the mountain goat, you rise steadily,
+    conquering every challenge with patience and grace.
+    Your loyalty, resilience, and quiet power inspire everyone around you.
+
+    Reba may this new year reward your hard work,
+    heal your heart, and fill your life with love and laughter.
+    May success walk beside you and happiness live within you always.
+
+    You are cherished, admired, and deeply loved.
+    Happy Birthday to an unforgettable Capricorn soul. 🌟🌸
+  </div>
+
+  <button onclick="startCelebration()">Tap to Celebrate 🎆</button>
+  
+</div>
+
+<audio id="music" loop>
+  <source src="Birthday.mp3">
+</audio>
+
+<script>
+function startCelebration() {
+  document.getElementById("msg").style.maxHeight = "600px";
+  document.getElementById("music").play();
+
+  // Balloons
+  for (let i = 0; i < 15; i++) {
+    let b = document.createElement("div");
+    b.className = "balloon";
+    b.innerHTML = "🎈";
+    b.style.left = Math.random() * 100 + "vw";
+    b.style.animationDuration = (Math.random() * 5 + 6) + "s";
+    document.body.appendChild(b);
+    setTimeout(() => b.remove(), 12000);
+  }
+
+  // Realistic fireworks
+  for (let i = 0; i < 8; i++) {
+    setTimeout(createFirework, i * 400);
+  }
+}
+
+function createFirework() {
+  let x = Math.random() * window.innerWidth;
+  let y = Math.random() * window.innerHeight / 2;
+
+  for (let i = 0; i < 30; i++) {
+    let s = document.createElement("div");
+    s.className = "spark";
+    s.style.left = x + "px";
+    s.style.top = y + "px";
+    s.style.background = `hsl(${Math.random()*360},100%,60%)`;
+    s.style.setProperty("--x", (Math.random()*200 - 100) + "px");
+    s.style.setProperty("--y", (Math.random()*200 - 100) + "px");
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1000);
+  }
+}
+
+
+</script>
+
+</body>
+</html>
